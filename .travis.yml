@@ -1,0 +1,20 @@
+language: node
+sudo: false
+
+env:
+  global:
+    - CF_DEPLOY_USER=fec_deployer
+    - secure: "cHmJPL3/S+kGl1LBkZGqbRyyCvKyHDmMXS322q6NbFdsDxlYRBbtNTCap3ij5h9hRxSGBQsL1cwCuHWaha78fljXpKXooC/Re5c3R5sP6A9jq6Ay9mcvmdgNi6md2OvQ5hMdHHHRvLq7WD1KozyKOdk58sVWJXBRKFlTaUklDgK30PMjw9Q2pZ9ENNanc8sJSuyAFeI1eNeciirEJbZH4Thw8PiDSR4FyUFARTPvZDwAZP/ZUv9/1z4i/nRej4GnNfeTBkPiLasr6LJob+nhr/mwEVJTw7oZIqTUVArJX9IffiirImCpzu2aYb15Q55b7CzP3RljWumSB4j+7il+6u1cLW5Q4pM3CC5F/zfm03wDfTO4z+/YiYCVX2wQYw5A7oXQaNTqhQRgSVrR9AUijZZYGb489Guv/UXe7ENtHLwQXIHMi9qzbNwpHKGNV9fryP4VYsbmm8PImD3q5XElPVII59cEp5NgR4HzB+vj0mL+S1pDGBxAXBEarKifAsscxstyLIa04RwTEfvxaWB6nMrGOkHvvNbMx+RgdiIL7x3E5xYSTvpGKgTc/IbvgvMJbeKDbHAyThWigYKrLbPCZvwsGnMC5grGqtwxlZP7Xrvw+b3h384GMBtNTDtDRSkFEIBb4NYp2a1bChk1ayKSA8Xr0cDroozITomiM39hMKk=" # CF_DEPLOY_PASSWORD
+
+before_deploy:
+  - mkdir $HOME/bin
+  - export PATH=$HOME/bin:$PATH
+  - travis_retry curl -L "https://cli.run.pivotal.io/stable?release=linux64-binary&version=6.23.0" | tar xzv -C $HOME/bin
+  - travis_retry cf install-plugin autopilot -f -r CF-Community
+
+deploy:
+  - provider: script
+    skip_cleanup: true
+    script: ./bin/cf_deploy.sh eregs fec dev manifest.dev.yml
+    on:
+      branch: feature/travis-deploy

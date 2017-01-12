@@ -5,7 +5,7 @@ sudo: false
 env:
   global:
     - CF_DEPLOY_USER=fec_deployer
-    - secure: "N9za4Z/kWXXUaJO9pXLBzgBqLqxW0jXQne8DZyTqYbK/F+hF9T7SLMI1BwyPlksDlKP4nU1RRPBc9B2CkkdDGQSD4dHoYpy6kCTJ6ivxY6bQKjG5SzMokSFzLYJPKYUD1Ht/oq/OxOlxM8kZAqhBHkXK8bUbyneIg6yk+cPQFtb9rWFcUN7r7ottfQ+T4j1/VTbCX5P2mqPcrwUYJUoMd0hVf4SA2EY9id3z8BgdV2XTlDXTVB1lvHYbtpTPLqMM0aonjQ8uAo4PZidtTQAUP7gnhU9/I1zjUL1nygSnX8Ktkq5dQu2YY4bBzaHFrNIBpmXeSW+ubWP+lUEJr3N/rwxAakkoN9W+VVjpTD1lYl9w2ifqs58EPvjVDETuEbUzSqXBq2oRTXk38H8pfqhTa4XvZ9cm16kzOYJam37B/C8BGoifc8Kac7/Rf2EutUTJjMKyBOfJ4s3NQSnHRLTeecp0LFXEJCf6p0iMl6PW3tU0Y/fb3NRdEUb1R9X3d3gsNGffpQNe4sh874Qc4Wee2ZsMd5Bal0Z75tYcSIe5RZ8ggj03uhj4Whp+MeVOPO7FYd4hjWmoUR/QZYqEl1Tn9I6Hz3Esm6DPA7zWTPlABSWMCZkHlc/ZsllDcLEQRcWuy/xts8QhFLqhJya6mkL4Hm02kf+a2E5Mej3sUyeUBxg=" # CF_DEPLOY_PASSWORD
+    - secure: "ITJQk8mBsPy/HBBuBx5WJTrIdzI7L9GjRGXLm61Rwv21dy8QiCv856Th5reP2OE4C/i0vRhkrPwstC6k5iW8qVigJDNdj5JYnWm0mSe612wWC4D9jKHgTjieM0MT9jkz0GZTt9WWP7iQVoX/QobPT3hWQoAu+2X5gl+NnkDgntbGgeVaU/ypJRt8xmwRK+R466eMpPATNtBa0Psjpy3hX42C4+kuMquVzBNuyZwP+NX8JD5jtJ9Arq7MnfcCJ/c/UfsxUa7XN/4R7ngyh6qT08+MUd5JVuSCGlrfhgbe41LykEvBiy2CXOCbpLyH447CCqsC+Ec41VnFio7AbeSx2ABxehlvFmq6wDZcS3gEcKNcfK0/4lSPvC6S3alfnvos0zCpWHE6qmLGo7RTcWrRQtp1Py03WxoFB9oZ+mSGuBxW2EmgE/hKhzK/vt8LA0uH/aFW4WxqLggGvuXzc5YWIsKi/6aOxWhaq9dm27F4sKj9YPGqRhFlu9a0e0U8lrvsE6ppma4zKyn2mvNXhvjxVyLzg3FVARZZcJj30wyu7hisRkTOUjNMdlDH6nFOo2qIR7ZNoxI1nDBcinyhEMO3/DByU9ZeYpoU1v6vpvY7K8vqqM2B71zi/+/b14qLaMFmX1avg7GcRYjzrcUxQwPQEKgQQaw8lq4+G8eZKcpogUU=" # CF_DEPLOY_PASSWORD
 
 before_deploy:
   - mkdir $HOME/bin
@@ -16,6 +16,6 @@ before_deploy:
 deploy:
   - provider: script
     skip_cleanup: true
-    script: ./bin/cf_deploy.sh fec-pattern-library fec dev manifest.dev.yml
+    script: ./bin/cf_deploy.sh fec-pattern-library fec dev
     on:
       branch: feature/travis-deploy

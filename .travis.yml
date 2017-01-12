@@ -16,6 +16,6 @@ before_deploy:
 deploy:
   - provider: script
     skip_cleanup: true
-    script: ./bin/cf_deploy.sh eregs fec dev manifest.dev.yml
+    script: ./bin/cf_deploy.sh fec-pattern-library fec dev manifest.dev.yml
     on:
       branch: feature/travis-deploy
